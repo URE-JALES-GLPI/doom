@@ -37,7 +37,7 @@ if (!defined('GLPI_ROOT')) {
     die("Sorry. You can't access this file directly");
 }
 
-define('PLUGIN_DOOM_VERSION', '0.2.0');
+define('PLUGIN_DOOM_VERSION', '0.2.1');
 define('PLUGIN_DOOM_MIN_GLPI', '10.0.0');
 define('PLUGIN_DOOM_MAX_GLPI', '12.0.99');
 
