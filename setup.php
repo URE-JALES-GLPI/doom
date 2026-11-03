@@ -207,7 +207,7 @@ function plugin_version_doom()
     return [
         'name' => '[URE] Doom',
         'version' => PLUGIN_DOOM_VERSION,
-        'author' => '<a href="https://github.com/juniormarcati">Marcati</a>, Leonardo Poiatti Fação',
+        'author' => 'Leonardo Poiatti Fação',
         'license' => 'AGPLv3+',
         'homepage' => 'https://github.com/juniormarcati/brandkit',
         'readme' => 'https://github.com/juniormarcati/brandkit/blob/master/Readme.md',
