@@ -96,7 +96,11 @@ function plugin_init_doom()
 
     $PLUGIN_HOOKS['display_login']['doom'] = 'plugin_doom_display_login';
 
-    $PLUGIN_HOOKS['add_javascript']['doom'] = 'js/doom-error.js';
+    // GLPI 12 só serve arquivos estáticos de public/: fora de lá, cada página pedia o
+    // script e recebia uma página 404 inteira.
+    if (!doom_is_glpi12()) {
+        $PLUGIN_HOOKS['add_javascript']['doom'] = 'js/doom-error.js';
+    }
 
     $pluginDocDir = null;
     if (defined('GLPI_VAR_DIR')) {
@@ -143,11 +147,13 @@ function plugin_init_doom()
     }
     // JS da tela de login: reskin do MFA roda em todas as versões; o
     // doom-login.js legado só no <11 (comportamento original preservado).
-    $anonJs = ['js/doom-mfa.js'];
+    $anonJs = doom_is_glpi12() ? [] : ['js/doom-mfa.js'];
     if (!$isGlpi11) {
         $anonJs[] = 'js/doom-login.js';
     }
-    $PLUGIN_HOOKS['add_javascript_anonymous_page']['doom'] = $anonJs;
+    if ($anonJs !== []) {
+        $PLUGIN_HOOKS['add_javascript_anonymous_page']['doom'] = $anonJs;
+    }
 
     if (!Session::getLoginUserID()) {
         return true;
